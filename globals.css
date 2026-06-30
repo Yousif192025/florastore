@@ -1,0 +1,299 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─────────────────────────────────────────────────────────
+   Flora Store — Design System
+   Brand: Rose Pink + Gold + Beige + White + Green Accent
+───────────────────────────────────────────────────────── */
+
+@layer base {
+  :root {
+    /* Flora Light Theme */
+    --background: 0 0% 100%;
+    --foreground: 20 14.3% 4.1%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 20 14.3% 4.1%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 20 14.3% 4.1%;
+
+    /* Primary = Flora Rose Pink */
+    --primary: 336 100% 57%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Secondary = Flora Gold */
+    --secondary: 38 92% 50%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 340 30% 96%;
+    --muted-foreground: 340 10% 45%;
+
+    --accent: 340 50% 95%;
+    --accent-foreground: 336 80% 40%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 340 20% 90%;
+    --input: 340 20% 90%;
+    --ring: 336 100% 57%;
+
+    --radius: 0.75rem;
+
+    /* Flora Custom Variables */
+    --flora-rose: 336 100% 57%;
+    --flora-pink-light: 327 78% 95%;
+    --flora-gold: 38 92% 50%;
+    --flora-gold-light: 43 96% 93%;
+    --flora-beige: 35 33% 85%;
+    --flora-beige-light: 35 33% 97%;
+    --flora-green: 142 71% 45%;
+    --flora-green-light: 142 76% 94%;
+
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, #fce7f3 0%, #fdf2f8 40%, #fffbeb 100%);
+    --gradient-card: linear-gradient(145deg, #ffffff 0%, #fdf2f8 100%);
+    --gradient-gold: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #d97706 100%);
+    --gradient-rose: linear-gradient(135deg, #f9a8d4 0%, #ec4899 50%, #db2777 100%);
+  }
+
+  .dark {
+    --background: 20 14.3% 4.1%;
+    --foreground: 0 0% 95%;
+
+    --card: 24 9.8% 10%;
+    --card-foreground: 0 0% 95%;
+
+    --popover: 0 0% 9%;
+    --popover-foreground: 0 0% 95%;
+
+    --primary: 336 100% 65%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 38 80% 55%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 64.9%;
+
+    --accent: 12 6.5% 15.1%;
+    --accent-foreground: 0 0% 95%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 95%;
+
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 336 100% 65%;
+
+    --gradient-hero: linear-gradient(135deg, #1a0a12 0%, #12080f 40%, #1a140a 100%);
+    --gradient-card: linear-gradient(145deg, #1a0a12 0%, #120810 100%);
+  }
+
+  * {
+    @apply border-border;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  /* RTL Support */
+  [dir="rtl"] {
+    font-family: var(--font-cairo), "Cairo", sans-serif;
+  }
+}
+
+@layer components {
+  /* ── Flora Button Variants ── */
+  .btn-flora {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 font-semibold
+           text-white transition-all duration-300 focus:outline-none focus:ring-2
+           focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed;
+    background: linear-gradient(135deg, #ec4899, #db2777);
+    box-shadow: 0 4px 15px rgba(236, 72, 153, 0.4);
+  }
+
+  .btn-flora:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(236, 72, 153, 0.5);
+  }
+
+  .btn-flora:active:not(:disabled) {
+    transform: translateY(0);
+  }
+
+  .btn-gold {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 font-semibold
+           text-white transition-all duration-300 focus:outline-none focus:ring-2
+           focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed;
+    background: linear-gradient(135deg, #fbbf24, #f59e0b);
+    box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
+  }
+
+  .btn-outline-flora {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 font-semibold
+           border-2 border-pink-400 text-pink-600 bg-transparent
+           transition-all duration-300 hover:bg-pink-50 focus:outline-none
+           focus:ring-2 focus:ring-pink-400 focus:ring-offset-2
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  /* ── Product Card ── */
+  .product-card {
+    @apply bg-white rounded-2xl overflow-hidden transition-all duration-300
+           hover:shadow-2xl hover:-translate-y-1 border border-pink-100/60;
+  }
+
+  .dark .product-card {
+    @apply bg-gray-900 border-gray-800;
+  }
+
+  /* ── Category Chip ── */
+  .category-chip {
+    @apply flex flex-col items-center gap-2 p-4 rounded-2xl
+           bg-white border border-pink-100 cursor-pointer
+           transition-all duration-200 hover:border-pink-300
+           hover:bg-flora-pink-50 hover:shadow-md;
+  }
+
+  .category-chip.active {
+    @apply border-pink-400 bg-pink-50 shadow-md;
+  }
+
+  /* ── Section Container ── */
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* ── Flora Badge ── */
+  .flora-badge {
+    @apply inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-semibold;
+  }
+
+  .flora-badge-sale {
+    @apply flora-badge bg-red-100 text-red-700;
+  }
+
+  .flora-badge-new {
+    @apply flora-badge bg-green-100 text-green-700;
+  }
+
+  .flora-badge-featured {
+    @apply flora-badge text-white;
+    background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  }
+
+  /* ── Skeleton Loader ── */
+  .skeleton {
+    @apply relative overflow-hidden bg-pink-50 rounded-lg;
+  }
+
+  .skeleton::after {
+    content: "";
+    @apply absolute inset-0;
+    background: linear-gradient(90deg, transparent, rgba(249, 168, 212, 0.4), transparent);
+    animation: shimmer 2s infinite linear;
+    background-size: 200% 100%;
+  }
+
+  /* ── Input Flora Style ── */
+  .input-flora {
+    @apply w-full rounded-xl border border-pink-200 bg-white px-4 py-3
+           text-gray-800 placeholder-gray-400 transition-all duration-200
+           focus:outline-none focus:border-pink-400 focus:ring-2
+           focus:ring-pink-400/20;
+  }
+
+  /* ── Page Title ── */
+  .page-title {
+    @apply text-3xl font-bold text-gray-900;
+  }
+
+  .page-title em {
+    @apply not-italic;
+    background: linear-gradient(135deg, #ec4899, #db2777);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ── Marquee Strip ── */
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee 30s linear infinite;
+  }
+
+  /* ── Scrollbar Flora ── */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #fdf2f8;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #f9a8d4;
+    border-radius: 9999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #ec4899;
+  }
+}
+
+@layer utilities {
+  /* Flora Text Gradient */
+  .text-flora-gradient {
+    background: linear-gradient(135deg, #ec4899, #db2777);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gold-gradient {
+    background: linear-gradient(135deg, #fbbf24, #d97706);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Safe Area */
+  .pb-safe { padding-bottom: env(safe-area-inset-bottom); }
+  .pt-safe { padding-top: env(safe-area-inset-top); }
+
+  /* Glass Effect */
+  .glass {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid rgba(249, 168, 212, 0.3);
+  }
+
+  .glass-dark {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    background: rgba(0, 0, 0, 0.6);
+  }
+
+  /* Hide scrollbar but keep functionality */
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+  /* Line clamp utilities */
+  .line-clamp-1 { overflow: hidden; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; }
+  .line-clamp-2 { overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+  .line-clamp-3 { overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; }
+}
