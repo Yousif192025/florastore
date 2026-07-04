@@ -48,7 +48,7 @@ const category = result.data;
 
       <div className="section-container py-10">
         <Suspense fallback={<div>جاري التحميل...</div>}>
-          <ProductsGrid searchParams={{ category: category.id }} />
+          <ProductsGrid searchParams={{ category: (category as any)?.id }} />
         </Suspense>
       </div>
     </div>
