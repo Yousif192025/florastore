@@ -20,14 +20,19 @@ export default async function CategoryPage({ params }: Props) {
   const cat = CATEGORIES.find((c) => c.slug === slug);
   if (!cat) notFound();
 
-  const supabase = await createClient();
-  const { data: category } = await supabase
-    .from("categories")
-    .select("*")
-    .eq("slug", slug)
-    .single();
+ const supabase = await createClient();
 
-  if (!category) notFound();
+const result = await supabase
+  .from("categories")
+  .select("*")
+  .eq("slug", slug)
+  .single();
+
+if (!result.data) {
+  notFound();
+}
+
+const category = result.data;
 
   return (
     <div className="min-h-screen bg-gray-50">
