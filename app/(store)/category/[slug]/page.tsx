@@ -21,19 +21,17 @@ export default async function CategoryPage({ params }: Props) {
   if (!cat) notFound();
 
   const supabase = await createClient();
-  const { data: categoryData } = await supabase
+  const { data } = await supabase
     .from("categories")
-    .select("id, slug, name_ar")
+    .select("id")
     .eq("slug", slug)
     .single();
 
-  if (!categoryData) notFound();
-
-  const categoryId = (categoryData as { id: string }).id;
+  const categoryId = (data as { id: string } | null)?.id ?? "";
+  if (!categoryId) notFound();
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Category Hero */}
       <div
         className="py-14 text-center"
         style={{ background: `linear-gradient(135deg, ${cat.color}80, ${cat.color}40)` }}
