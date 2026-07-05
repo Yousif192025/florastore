@@ -4,9 +4,8 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { toast } from "sonner";
-import { Mail, Phone, MessageCircle } from "lucide-react";
+import { Mail, MessageCircle } from "lucide-react";
 import { SOCIAL_LINKS, WHATSAPP_NUMBER } from "@/lib/constants";
-import type { Metadata } from "next";
 
 const schema = z.object({
   full_name: z.string().min(3),
