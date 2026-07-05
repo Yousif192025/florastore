@@ -20,19 +20,16 @@ export default async function CategoryPage({ params }: Props) {
   const cat = CATEGORIES.find((c) => c.slug === slug);
   if (!cat) notFound();
 
- const supabase = await createClient();
+  const supabase = await createClient();
+  const { data: categoryData } = await supabase
+    .from("categories")
+    .select("id, slug, name_ar")
+    .eq("slug", slug)
+    .single();
 
-const result = await supabase
-  .from("categories")
-  .select("*")
-  .eq("slug", slug)
-  .single();
+  if (!categoryData) notFound();
 
-if (!result.data) {
-  notFound();
-}
-
-const category = result.data;
+  const categoryId = (categoryData as { id: string }).id;
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -48,7 +45,7 @@ const category = result.data;
 
       <div className="section-container py-10">
         <Suspense fallback={<div>جاري التحميل...</div>}>
-          <ProductsGrid searchParams={{ category: (category as any)?.id }} />
+          <ProductsGrid searchParams={{ category: categoryId }} />
         </Suspense>
       </div>
     </div>
